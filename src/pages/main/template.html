@@ -1,0 +1,60 @@
+<div class="page-container">
+    <header-nav :title="'团队'"></header-nav>
+
+    <div class="page-wrap">
+        <div class="page-box">
+            <div class="container">
+                <div class="shadow" v-if="isOpen1 || isOpen2" @click="isOpen2=isOpen1= false;"></div>
+                <ul class="nav-container">
+                    <li class="nav-link">
+                        <router-link to="">
+                            <img class="icon" src="./img/icon_menu_all.png"><span class="text align-vertical">所有KPI</span>
+                        </router-link>
+                    </li>                    
+                    <li class="nav-link" @click="isOpen1 = !isOpen1;">
+                        <router-link to="">
+                            <img class="icon" src="./img/icon_menu_company.png"><span class="text align-vertical">公司概况<i class="mep-icon mep-icon-arrow-down-b"></i></span>
+                        </router-link>
+                        <ul class="selection" v-if="isOpen1">
+                            <li>成都研发中心</li>
+                        </ul>
+                    </li>                    
+                    <li class="nav-link" @click="isOpen2 = !isOpen2;">
+                        <router-link to="">
+                            <img class="icon" src="./img/icon_menu_team.png"><span class="text align-vertical">研发团队概况<i class="mep-icon mep-icon-arrow-down-b"></i></span>
+                        </router-link>
+                        <ul class="selection" v-if="isOpen2">
+                            <li>费控</li>
+                            <li>微店</li>
+                        </ul>
+                    </li>
+                    <li class="nav-link">
+                        <router-link to="">
+                            <img class="icon" src="./img/icon_menu_search.png"><span class="text align-vertical">项目搜索</span>
+                        </router-link>
+                    </li> 
+                    <li class="nav-link">
+                        <router-link to="">
+                            <img class="icon" src="./img/icon_menu_attention.png"><span class="text align-vertical">我的关注</span>
+                        </router-link>
+                    </li> 
+                    <li class="nav-link">
+                        <router-link to="">
+                            <img class="icon" src="./img/icon_menu_importance.png"><span class="text align-vertical">集团重点项目</span>
+                        </router-link>
+                    </li> 
+                </ul>
+
+                <div class="blank"></div>
+
+                <div class="company-name">
+                    <p class="title">
+                        <img class="project-icon" src="./img/icon_project.png">
+                        <span class="name">集团预发布项目</span>
+                    </p>
+                    <p class="notes">2周内预发布项目</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

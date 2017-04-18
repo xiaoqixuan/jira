@@ -1,0 +1,26 @@
+
+@font-face {font-family: "iconfont";
+  src: url('iconfont.eot'); /* IE9*/
+  src: url('iconfont.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.ttf') format('truetype'); /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:1.2em;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-add:before { content: "\e603"; }
+
+.icon-radio-check:before { content: "\e623"; }
+
+.icon-position:before { content: "\e634"; }
+
+.icon-radio:before { content: "\e622"; }
+
+.icon-building:before { content: "\e802"; }
+
+.icon-import:before { content: "\e653"; }

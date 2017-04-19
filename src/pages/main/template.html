@@ -1,5 +1,5 @@
 <div class="page-container">
-    <header-nav :title="'团队'"></header-nav>
+    <header-nav :title="'首页'"></header-nav>
 
     <div class="page-wrap">
         <div class="page-box">
@@ -8,12 +8,12 @@
                 <ul class="nav-container">
                     <li class="nav-link">
                         <router-link to="">
-                            <img class="icon" src="./img/icon_menu_all.png"><span class="text align-vertical">所有KPI</span>
+                            <img class="icon" src="../public/img/icon_menu_all.png"><span class="text align-vertical">所有KPI</span>
                         </router-link>
                     </li>                    
                     <li class="nav-link" @click="isOpen1 = !isOpen1;">
                         <router-link to="">
-                            <img class="icon" src="./img/icon_menu_company.png"><span class="text align-vertical">公司概况<i class="mep-icon mep-icon-arrow-down-b"></i></span>
+                            <img class="icon" src="../public/img/icon_menu_company.png"><span class="text align-vertical">公司概况<i class="mep-icon mep-icon-arrow-down-b"></i></span>
                         </router-link>
                         <ul class="selection" v-if="isOpen1">
                             <li>成都研发中心</li>
@@ -21,7 +21,7 @@
                     </li>                    
                     <li class="nav-link" @click="isOpen2 = !isOpen2;">
                         <router-link to="">
-                            <img class="icon" src="./img/icon_menu_team.png"><span class="text align-vertical">研发团队概况<i class="mep-icon mep-icon-arrow-down-b"></i></span>
+                            <img class="icon" src="../public/img/icon_menu_team.png"><span class="text align-vertical">研发团队概况<i class="mep-icon mep-icon-arrow-down-b"></i></span>
                         </router-link>
                         <ul class="selection" v-if="isOpen2">
                             <li>费控</li>
@@ -30,30 +30,71 @@
                     </li>
                     <li class="nav-link">
                         <router-link to="">
-                            <img class="icon" src="./img/icon_menu_search.png"><span class="text align-vertical">项目搜索</span>
+                            <img class="icon" src="../public/img/icon_menu_search.png"><span class="text align-vertical">项目搜索</span>
                         </router-link>
                     </li> 
                     <li class="nav-link">
-                        <router-link to="">
-                            <img class="icon" src="./img/icon_menu_attention.png"><span class="text align-vertical">我的关注</span>
+                        <router-link to="/attention">
+                            <img class="icon" src="../public/img/icon_menu_attention.png"><span class="text align-vertical">我的关注</span>
                         </router-link>
                     </li> 
                     <li class="nav-link">
-                        <router-link to="">
-                            <img class="icon" src="./img/icon_menu_importance.png"><span class="text align-vertical">集团重点项目</span>
+                        <router-link to="/important">
+                            <img class="icon" src="../public/img/icon_menu_importance.png"><span class="text align-vertical">集团重点项目</span>
                         </router-link>
                     </li> 
                 </ul>
 
                 <div class="blank"></div>
 
-                <div class="company-name">
-                    <p class="title">
-                        <img class="project-icon" src="./img/icon_project.png">
+                <div class="title-wrap">
+                    <p class="main-title">
+                        <img class="project-icon" src="../public/img/icon_project.png">
                         <span class="name">集团预发布项目</span>
                     </p>
                     <p class="notes">2周内预发布项目</p>
                 </div>
+                <ul class="project-items">
+                    <li class="project-detail">
+                        <ul class="content">
+                            <li class="item-header">
+                                <img class="icon" src="../public/img/icon_menu_importance.png">
+                                <router-link to="##" class="project-title">国美会员管理平台</router-link>
+                            </li>
+                            <li class="issue-time">
+                                <span class="name">项目编号</span>
+                                <span class="value special">CDDEV-4648</span>
+                            </li>
+                            <li class="issue-time">
+                                <span class="name">计划发布时间</span>
+                                <i class="mep-icon mep-icon-clock"></i>
+                                <span class="value special">2017-04-27</span>
+                            </li>
+                            <li class="issue-time">
+                                <span class="name">当前执行流程</span>
+                                <span class="value special">300测试</span>
+                            </li>
+                            <li class="issue-time">
+                                <span class="name">项目进度指示</span>
+                                <i class="mep-icon mep-icon-record color"></i>
+                                <span class="special">正常</span>
+                            </li>
+                            <li class="issue-time progress">
+                                <span class="name">项目进度</span>
+                                <div class="progress-bar">
+                                    <p class="progressed" style="width:83%"></p>
+                                    <span class="percentage">83%</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- 加载中 -->
+                <div class="loading">
+                    <img src="../public/img/loading.gif">
+                </div>                 
+
+                <p class="no-result">暂无项目...</p>                
             </div>
         </div>
     </div>

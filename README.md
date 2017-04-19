@@ -24,7 +24,6 @@ npm run build
 ```bash
 /build              编译配置
 /dist               生成文件存放目录
-/public             静态资源目录
 /src                源代码
 /src/main.js        入口文件
 /src/index.html     入口 html
@@ -33,6 +32,7 @@ npm run build
 /src/mixins         混合
 /src/modules        页面模块
 /src/pages          具体页面
+/src/pages/public   静态资源目录
 /src/styles         组件样式
 /src/utils          工具集
 ```

@@ -3,4 +3,9 @@ export default {
 		return {};
 	},
 	props: ['title'],
+	methods: {
+		onBack() {
+			this.$router.back();
+		},
+	}
 }

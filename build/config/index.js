@@ -30,7 +30,7 @@ module.exports = {
 		// proxyTable: {},
 		proxyTable: {
 		  '/jiraexpand': {
-		    target: 'http://10.112.68.14:8080',
+		    target: 'http://localhost:8080',
 		    changeOrigin: true,
 		    pathRewrite: {
 		      '^/jiraexpand': '/jiraexpand'

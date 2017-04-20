@@ -12,7 +12,8 @@ export default {
 		}
 	},
 	beforeMount() {
-		this.getData('/team.do?time&type=day')
+		// 获取团队列表
+		this.getData('/mainshow.do?progress&jirauser=')
 			.then(_data => {
 				console.log(_data);
 			}).catch(_err => {

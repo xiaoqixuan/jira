@@ -1,0 +1,91 @@
+@space: 1rem;
+.container {
+	// 当月数据概况
+	.people-config {
+		padding: 0 @space;
+		&::after {
+		    content: "."; 
+		    display: block; 
+		    height: 0; 
+		    clear: both; 
+		    visibility: hidden;  
+		}
+		.item {
+		    float: left;
+		    margin: 1.5rem 0;
+		    width: 33.33%;
+		    text-align: center;
+		    font-size: 1.5rem;
+		    color: #999;
+		    // border-right: 1px solid #999;
+			.number {    
+			    color: #028be6;
+			    font-weight: bold;
+			    margin-bottom: .8rem;
+			}
+		}
+	}
+	// 同比/环比
+	.compare-wrap {
+	    position: relative;
+	    font-size: 1.7rem;
+	    .compare-title {
+		    padding: @space;
+		    color: #666;
+		    border-bottom: 1px solid #e0e0e0;
+		}
+		.compare-title-2 {
+		    color: #333;
+		    text-align: center;
+		    background: #f9f9f9;
+		    .mep-icon {
+		    	margin-right: @space/2;
+		    }
+		    .time {
+		    	margin: 0 @space/2;
+		    }
+		}
+		.histogram {
+		    width: 100%;
+		    height: 30rem;
+		}
+		.table-list {
+		    width: calc(~"100% - 2@space");
+			margin: 0 @space;			
+			.title {
+			    background: #f9f9f9;
+			}
+			.table-content {
+			    height: 4rem;
+			    line-height: 4rem;
+			    font-size: 1.5rem;
+			    color: #666;
+			    .table-item {
+				    float: left;
+				    width: 23%;
+				    text-align: center;
+				}
+			    .data-item {
+				    margin-left: 1rem;
+				    width: calc(~"38% - 1rem");
+				    text-align: left;
+				    line-height: 4rem;
+				}
+				.growth-rate {
+				    margin: 1rem 0;
+				    width: 16%;
+				    height: 2rem;
+				    line-height: 2rem;
+				}
+				.increase {
+				    background: #f6754c;
+				    color: #000;
+				}
+				.reduce {
+				    background: #6eb372;
+				    color: #000;
+				}
+			}
+		}
+	}
+}

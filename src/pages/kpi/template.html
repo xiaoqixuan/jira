@@ -1,0 +1,118 @@
+<div class="page-container">
+    <header-nav :title="'所有KPI'"></header-nav>
+
+    <div class="page-wrap">
+        <div class="page-box">
+            <div class="container">
+
+                <div class="wrapper profile">
+                    <div class="title-wrap">
+                        <p class="main-title">
+                            <img class="project-icon" src="../public/img/icon_project.png">
+                            <span class="name">当月数据概况</span>
+                        </p>
+                        <p class="notes">截止至 {{time}} 数据</p>
+                    </div>
+                    <ul class="people-config">
+                        <li class="item" v-for="(n,index) in configList">
+                            <p class="number">{{n.value}}</p><p class="name">{{n.name}}</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="blank"></div>
+
+                <div class="wrapper task-completion">
+                    <div class="title-wrap">
+                        <p class="main-title">
+                            <img class="project-icon" src="../public/img/icon_project.png">
+                            <span class="name">数据对比</span>
+                        </p>
+                    </div> 
+                    <div class="compare-wrap compare-transverse">
+                        <p class="compare-title">同比</p>
+                        <p class="compare-title compare-title-2 transverse">
+                            <span class="time">
+                                <i class="mep-icon mep-icon-calendar"></i>{{this.compareTime.time1}}
+                            </span>VS                            
+                            <span class="time">
+                                <i class="mep-icon mep-icon-calendar"></i>{{this.compareTime.time2}}
+                            </span>
+                        </p>
+                        <!-- echarts -->
+                        <ul class="transverse-list percentage-list"></ul>
+
+                        <div id="transverse-histogram" class="histogram">
+
+                        </div>
+                        <!-- 表格 -->
+                        <ul class="transverse-table table-list">
+                            <li class="title table-content">
+                                <span class="data-item table-item">数据项</span>
+                                <span class="table-item">{{this.compareTime.time1}}</span>
+                                <span class="table-item">{{this.compareTime.time2}}</span>
+                                <span class="table-item growth-rate">增长率</span>
+                            </li>
+                            <li class="table-content" v-for="(n,index) in transverseTable">
+                                <span class="data-item table-item">{{n.name}}</span>
+                                <span class="table-item">{{n.value1}}</span>
+                                <span class="table-item">{{n.value2}}</span>
+                                <span v-if="n.percentage > 0" class="table-item growth-rate increase">{{n.percentage}}%</span>
+                                <span v-if="n.percentage < 0" class="table-item growth-rate reduce">{{n.percentage}}%</span>                                
+                                <span v-if="n.percentage == 0 || n.percentage == '/'" class="table-item growth-rate">{{n.percentage == 0 ? '0%' : '/'}}</span>
+                            </li>
+                        </ul>
+
+                        <div class="blank"></div>
+                    </div>
+                    
+
+                    <div class="compare-wrap compare-longitudinal">
+                        <p class="compare-title">环比</p>
+                        <p class="compare-title compare-title-2">
+                            <span class="time">
+                                <i class="mep-icon mep-icon-calendar"></i>{{this.compareTime.time3}}
+                            </span>VS                            
+                            <span class="time">
+                                <i class="mep-icon mep-icon-calendar"></i>{{this.compareTime.time4}}
+                            </span>
+                        </p>
+                        <!-- echarts -->
+                        <ul class="longitudinal-list percentage-list"></ul>
+
+                        <div id="longitudinal-histogram" class="histogram">
+
+                        </div>
+                        <!-- 表格 -->
+                        <ul class="longitudinal-table table-list">
+                            <li class="title table-content">
+                                <span class="data-item table-item">数据项</span>
+                                <span class="table-item">{{this.compareTime.time3}}</span>
+                                <span class="table-item">{{this.compareTime.time4}}</span>
+                                <span class="table-item growth-rate">增长率</span>
+                            </li>
+                            <li class="table-content" v-for="(n,index) in longitudinalTable">
+                                <span class="data-item table-item">{{n.name}}</span>
+                                <span class="table-item">{{n.value1}}</span>
+                                <span class="table-item">{{n.value2}}</span>
+                                <span v-if="n.percentage > 0" class="table-item growth-rate increase">{{n.percentage}}%</span>
+                                <span v-if="n.percentage < 0" class="table-item growth-rate reduce">{{n.percentage}}%</span>                                
+                                <span v-if="n.percentage == 0 || n.percentage == '/'" class="table-item growth-rate">{{n.percentage == 0 ? '0%' : '/'}}</span>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+
+                <div class="blank"></div>
+
+                <!-- 加载中 -->
+                <div class="loading">
+                    <img src="../public/img/loading.gif">
+                </div>                 
+
+                <p class="no-result">暂无项目...</p>                
+            </div>
+        </div>
+    </div>
+</div>

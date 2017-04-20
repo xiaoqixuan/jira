@@ -1,7 +1,7 @@
 import 'whatwg-fetch';
 
-// const Host = '';
-const Host = 'http://10.128.25.70:8080';
+// const Host = 'http://10.112.68.14:8080/jiraexpand';
+ const Host = '/jiraexpand';
 
 function jsonToQueryString(json) {
     return Object.keys(json).map(function (key) {
@@ -23,27 +23,7 @@ function getData(Vue, options) {
             }).then(function (_res) {
                 return _res.json();
             }).then(function (_data) {
-                switch (_data.code) {
-                    case 200:
-                        if (_data.sessionId) {
-                            window.localStorage.sessionId = _data.sessionId;
-                        }
-                        resolve(_data);
-                        break;
-                    case 401:
-                        // Vue.$router.push('/login');
-                        window.location.assign('/#/login');
-                        reject(_data.remark);
-                        break;
-                    case 404:
-                        reject(_data.remark);
-                        break;
-                    case 408:
-                        reject(_data.remark);
-                        break;
-                    default:
-                        reject(_data.remark);
-                }
+                resolve(_data);
             }).catch(function (err) {
                 console.log("请求错误:", err);
                 reject(err);

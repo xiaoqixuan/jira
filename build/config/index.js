@@ -27,7 +27,16 @@ module.exports = {
 		port: projectPackage.devPort || 8081,
 		assetsSubDirectory: './',
 		assetsPublicPath: '',
-		proxyTable: {},
+		// proxyTable: {},
+		proxyTable: {
+		  '/jiraexpand': {
+		    target: 'http://10.112.68.14:8080',
+		    changeOrigin: true,
+		    pathRewrite: {
+		      '^/jiraexpand': '/jiraexpand'
+		    }
+		  }
+		},
 		// CSS Sourcemaps off by default because relative paths are "buggy"
 		// with this option, according to the CSS-Loader README
 		// (https://github.com/webpack/css-loader#sourcemaps)

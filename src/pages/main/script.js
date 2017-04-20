@@ -12,12 +12,12 @@ export default {
 		}
 	},
 	beforeMount() {
-		/*this.getData('/team.do?time')
+		this.getData('/team.do?time&type=day')
 			.then(_data => {
 				console.log(_data);
 			}).catch(_err => {
 				alert(_err);
-			})*/
+			})
 	},
 	methods: {
 		

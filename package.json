@@ -12,7 +12,9 @@
   "webpackDefine": {},
   "devPort": 9000,
   "cdnUrl": "",
-  "dependencies": {},
+  "dependencies": {
+    "echarts": "^3.5.3"
+  },
   "devDependencies": {
     "async-validator": "^1.6.8",
     "autoprefixer": "^6.7.7",

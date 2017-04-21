@@ -1,0 +1,64 @@
+<div class="page-container">
+    <header-nav :title="'项目搜索'"></header-nav>
+
+    <div class="page-wrap">
+        <div class="page-box">
+            <div class="container">
+                <div class="shadow" v-if="isOpen1 || isOpen2" @click="isOpen2=isOpen1= false;"></div>
+                <!-- 搜索框 -->
+                <div class="search-wrap">
+                    <div class="left float">
+                        <input @keyup.enter="getResult();" type="text" placeholder="请输入" v-model="kw" class="input">
+                    </div>    
+                    <div class="right float">              
+                        <div class="place" @click="isOpen1 = !isOpen1;">
+                            <p>
+                                <span class="text">{{place.label}}</span>
+                                <i class="mep-icon mep-icon-arrow-down-b"></i>
+                            </p>
+                            
+                            <ul v-if="isOpen1" class="selection">   
+                                <li @click="changeFilter(n,'place');" v-for="(n,index) in placeList">{{n.label}}</li>
+                            </ul>                            
+                        </div>
+
+                        <div class="status" @click="isOpen2 = !isOpen2;">
+                            <p>
+                                <span class="text">{{state.label}}</span>
+                                <i class="mep-icon mep-icon-arrow-down-b"></i>
+                            </p>
+                            
+                            <ul v-if="isOpen2" class="selection">   
+                                <li @click="changeFilter(n,'state');" v-for="(n,index) in stateList">{{n.label}}</li>
+                            </ul>                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 历史搜索 -->
+                <div v-if="!searchStart" class="history">
+                    <div class="head">
+                        <span class="name">历史搜索</span>
+                        <i @click="deleteHistory();" class="mep-icon mep-icon-trash-a"></i>
+                    </div>
+                    <p v-if="!history" class="no-data">没有历史记录</p>
+                    <ul v-if="history" class="list">
+                        <li class="item" v-for="(n,index) in history" @click="toDetail(n);">{{n.title}}</li>
+                    </ul>
+                </div>
+                <!-- 加载中 -->
+                <div v-if="loading" class="loading">
+                    <img src="../public/img/loading.gif">
+                </div>                 
+
+                <!--搜索结果-->
+                <div v-if="!loading && searchStart" class="result">
+                    <p v-if="!result.length" class="no-data">未匹配，请重新筛选</p>
+                    <ul v-if="result.length" class="list">
+                        <li class="item" v-for="(n,index) in result" @click="toDetail(n);">{{n.title}}</li>
+                    </ul>
+                </div>               
+            </div>
+        </div>
+    </div>
+</div>

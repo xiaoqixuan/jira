@@ -45,6 +45,23 @@
 		    	margin: 0 @space/2;
 		    }
 		}
+		.percentage-list {
+		    position: absolute;
+		    right:  @space;
+		    top: 14rem;
+		    font-size: 1.4rem;
+		    color: #686868;
+		    text-align: right;
+		    .percentage {
+			    margin-bottom: .9rem;
+			    .increase {
+				    color: #f6754c;
+				}
+				.reduce {
+				    color: #6eb372;
+				}
+			}
+		}
 		.histogram {
 		    width: 100%;
 		    height: 30rem;
@@ -63,7 +80,7 @@
 			    .table-item {
 				    float: left;
 				    width: 23%;
-				    text-align: center;
+				    text-align: center;				    
 				}
 			    .data-item {
 				    margin-left: 1rem;
@@ -87,5 +104,19 @@
 				}
 			}
 		}
+		.longitudinal-table .title {			
+		    .table-item {
+			    height: 2rem;
+			    line-height: 2rem;			    
+			}
+			.data-item {
+			    line-height: 4rem;
+			}
+		}
+	}
+	// 历史数据
+	.echarts {
+	    width: 100%;
+	    height: 30rem;
 	}
 }

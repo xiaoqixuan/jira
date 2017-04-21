@@ -13,7 +13,11 @@
                         </p>
                         <p class="notes">截止至 {{time}} 数据</p>
                     </div>
-                    <ul class="people-config">
+                    <!-- 加载中 -->
+                    <div v-if="!configList.length" class="loading">
+                        <img src="../public/img/loading.gif">
+                    </div>  
+                    <ul v-if="configList.length" class="people-config">
                         <li class="item" v-for="(n,index) in configList">
                             <p class="number">{{n.value}}</p><p class="name">{{n.name}}</p>
                         </li>
@@ -40,7 +44,13 @@
                             </span>
                         </p>
                         <!-- echarts -->
-                        <ul class="transverse-list percentage-list"></ul>
+                        <ul class="transverse-list percentage-list">
+                            <li class="percentage" v-for="(n,index) in transverseTable">
+                                <span class="increase" v-if="n.percentage > 0">{{n.percentage}}%</span>
+                                <span class="reduce" v-if="n.percentage < 0">{{n.percentage}}%</span>
+                                <span v-if="n.percentage == 0 || n.percentage == '/'">{{n.percentage == 0 ? '0%' : '/'}}</span>
+                            </li>
+                        </ul>
 
                         <div id="transverse-histogram" class="histogram">
 
@@ -78,7 +88,13 @@
                             </span>
                         </p>
                         <!-- echarts -->
-                        <ul class="longitudinal-list percentage-list"></ul>
+                        <ul class="longitudinal-list percentage-list">
+                            <li class="percentage" v-for="(n,index) in longitudinalTable">
+                                <span class="increase" v-if="n.percentage > 0">{{n.percentage}}%</span>
+                                <span class="reduce" v-if="n.percentage < 0">{{n.percentage}}%</span>
+                                <span v-if="n.percentage == 0 || n.percentage == '/'">{{n.percentage == 0 ? '0%' : '/'}}</span>
+                            </li>                             
+                        </ul>
 
                         <div id="longitudinal-histogram" class="histogram">
 
@@ -87,8 +103,8 @@
                         <ul class="longitudinal-table table-list">
                             <li class="title table-content">
                                 <span class="data-item table-item">数据项</span>
-                                <span class="table-item">{{this.compareTime.time3}}</span>
-                                <span class="table-item">{{this.compareTime.time4}}</span>
+                                <span class="table-item">{{this.compareTime.time3.slice(0,5)}}<br>{{this.compareTime.time3.slice(5)}}</span>
+                                <span class="table-item">{{this.compareTime.time4.slice(0,5)}}<br>{{this.compareTime.time4.slice(5)}}</span>
                                 <span class="table-item growth-rate">增长率</span>
                             </li>
                             <li class="table-content" v-for="(n,index) in longitudinalTable">
@@ -104,14 +120,20 @@
                     </div>
                 </div>
 
-                <div class="blank"></div>
+                <div class="blank"></div>               
 
-                <!-- 加载中 -->
-                <div class="loading">
-                    <img src="../public/img/loading.gif">
-                </div>                 
+                <div class="wrapper history">
+                    <div class="title-wrap">
+                        <p class="main-title">
+                            <img class="project-icon" src="../public/img/icon_project.png">
+                            <span class="name">历史数据</span>
+                        </p>
+                    </div>
+                    
+                    <div id="history-line" class="echarts"></div>
+                </div>
 
-                <p class="no-result">暂无项目...</p>                
+                <!-- <p class="no-result">暂无项目...</p>                 -->
             </div>
         </div>
     </div>

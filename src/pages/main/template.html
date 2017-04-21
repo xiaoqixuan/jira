@@ -12,24 +12,23 @@
                         </router-link>
                     </li>                    
                     <li class="nav-link" @click="isOpen1 = !isOpen1;">
-                        <router-link to="">
+                        <p>
                             <img class="icon" src="../public/img/icon_menu_company.png"><span class="text align-vertical">公司概况<i class="mep-icon mep-icon-arrow-down-b"></i></span>
-                        </router-link>
+                        </p>
                         <ul class="selection" v-if="isOpen1">
                             <li>成都研发中心</li>
                         </ul>
                     </li>                    
                     <li class="nav-link" @click="isOpen2 = !isOpen2;">
-                        <router-link to="">
+                        <p>
                             <img class="icon" src="../public/img/icon_menu_team.png"><span class="text align-vertical">研发团队概况<i class="mep-icon mep-icon-arrow-down-b"></i></span>
-                        </router-link>
-                        <ul class="selection" v-if="isOpen2">
-                            <li>费控</li>
-                            <li>微店</li>
+                        </p>
+                        <ul class="selection" v-if="isOpen2">   
+                            <li v-for="(n,index) in teamList"><router-link to="###">{{n.moduleName}}</router-link></li>
                         </ul>
                     </li>
                     <li class="nav-link">
-                        <router-link to="">
+                        <router-link to="/search">
                             <img class="icon" src="../public/img/icon_menu_search.png"><span class="text align-vertical">项目搜索</span>
                         </router-link>
                     </li> 

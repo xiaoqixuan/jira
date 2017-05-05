@@ -11,6 +11,8 @@ import TimePicker from './time-picker';
 import Page from './page';
 import Form from './form';
 import InputNumber from './input-number';
+import Tabs from './tabs'; // 选项卡
+
 import {
     Select,
     Option,
@@ -41,6 +43,8 @@ const components = {
     MForm: Form,
     FormItem: Form.Item,
     InputNumber,
+    Tabs:Tabs,
+    TabPane:Tabs.Pane, // 选项卡
 }
 
 export default components;

@@ -5,24 +5,24 @@
         <div class="page-box">
             <div class="container">
 
-                <ul class="projects">
-                    <li class="project-item">
-                        <router-link to="##" class="summary">
-                            <img class="icon" src="../public/img/icon_menu_importance.png"><span class="name">海外购超市POS项目</span>
-                        </router-link>
-                        <p class="right" @click="isAttention = !isAttention;">
-                            <img v-if="isAttention" class="icon" src="../public/img/icon_attention.png">
-                            <img v-if="!isAttention" class="icon" src="../public/img/icon_menu_attention.png">
+                <ul v-if="!loading && attentionList" class="projects">
+                    <li class="project-item" v-for="(n,index) in attentionList">
+                        <a :href="'#/detail/'+ n.issuekey" class="summary">
+                            <img v-if="n.isimportant" class="icon" src="../public/img/icon_menu_importance.png"><span class="name">{{n.issuetitle}}</span>
+                        </a>
+                        <p class="right" @click="doAttention(n,index);">
+                            <!-- <img v-if="!n.isconcern" class="icon" src="../public/img/icon_attention.png"> -->
+                            <img class="icon" src="../public/img/icon_menu_attention.png">
                         </p>
                     </li>
 
                 </ul> 
                 <!-- 加载中 -->
-                <div class="loading">
+                <div v-if="loading" class="loading">
                     <img src="../public/img/loading.gif">
                 </div>                 
 
-                <p class="no-result">暂无项目...</p>                
+                <p v-if="!loading && !attentionList" class="no-result">暂无项目...</p>                
             </div>
         </div>
     </div>

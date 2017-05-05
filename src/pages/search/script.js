@@ -1,3 +1,8 @@
+var resultList = {		
+	'CDDEV-8870': "小虫-工单系统",
+	'CDDEV-8872': "小虫-BO/邮箱集成",
+	'CDDEV-8873': "小虫-开放注册",
+};
 export default {
 	route: {
 		path: "/search",
@@ -47,30 +52,38 @@ export default {
 			let kw = this.kw;
 
 			
-			this.getData('/search.do?index&status='+status+'&place='+place+'&summary='+kw)
-				.then(_data => {
-					this.loading = false;
+			// this.getData('/search.do?index&status='+status+'&place='+place+'&summary='+kw)
+			// 	.then(_data => {
+			var _self = this;
+			setTimeout(() => {
+				_self.loading = false;
+				var _data = resultList;
 
-					let obj = _data;
-					let result = [];
-					for (let i in obj) {
-						var o = {
-							key: i,
-							title: obj[i],
-						};
-						result.push(o);
-					}
-					this.result = result;
-				}).catch(_err => {
-					this.loading = false;
-					alert(_err);
-				})
+				let obj = _data;
+				let result = [];
+				for (let i in obj) {
+					var o = {
+						key: i,
+						title: obj[i],
+					};
+					result.push(o);
+				}
+
+				_self.result = result;
+			},1000)
+
+
+				// }).catch(_err => {
+				// 	this.loading = false;
+				// 	alert(_err);
+				// })
 		},
 		toDetail(item) {
 			// 存储历史记录
 			this.saveHistory(item);
 
 			// 跳转项目详情
+			this.$router.push('/detail/'+item.key);
 		},
 		saveHistory(kw) {
 		    // 取出现有记录

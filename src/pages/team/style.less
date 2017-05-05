@@ -1,0 +1,129 @@
+.container {
+	.cycle-img {
+	    width: 12rem;
+	    height: 12rem;
+	    margin: 3rem auto 2rem auto;
+	    // background: red;
+	    background: -webkit-linear-gradient(#c274f1, #038be6);
+	    background: -o-linear-gradient(#c274f1, #038be6);
+	    background: -moz-linear-gradient(#c274f1, #038be6);
+	    background: linear-gradient(#c274f1, #038be6);
+	    position: relative;
+	    border-radius: 100%;
+	    .text {
+		    width: 100%;
+		    height: 100%;
+		    line-height: 11.3rem;
+		    font-size: 3.4rem;
+		    color: #038be6;
+		    position: absolute;
+		    z-index: 500;
+		    text-align: center;
+		    .sub {
+			    font-size: 1.2rem;
+			}
+		}
+		.inner2 {
+		    position: absolute;
+		    width: 11.4rem;
+		    height: 11.4rem;
+		    border-radius: 100%;
+		    top: .3rem;
+		    left: .3rem;
+		    background-color: #fff;
+		    z-index: 480;
+		}
+		.inner3 {
+		    position: absolute;
+		    width: 10.4rem;
+		    height: 10.4rem;
+		    border-radius: 100%;
+		    top: .5rem;
+		    left: .5rem;
+		    background-color: #e2eef7;
+		    z-index: 490;
+		}
+	}
+	.team-people {
+		.item {
+			width: 25%;
+		}
+		.number {
+			font-size: 2.6rem;
+			margin-right: .5rem;
+    		font-weight: normal !important;
+		}
+	}
+	.task {
+	    width: 92%;
+	    padding: 0.5rem 1rem;
+	    background-color: #e2eef7;
+	    margin: 1.5rem auto;
+	    border-radius: .4rem;
+	    font-size: 0;
+	    .item {
+		    display: inline-block;
+		    width: calc(~"50% - .5rem");
+		    font-size: 1.35rem;
+		    color: #666;
+		    padding: 0.5rem 0;
+		    &:nth-child(2n) {
+		    	margin-left: 1rem;
+		    }
+		    .float-right {		    	
+			    text-align: right;
+			    color: #028be6;
+			    font-weight: bold;
+			    .unit {
+			    	color: #999;
+			    	font-weight: normal;
+			    }
+		    }
+		}
+	}
+	.projectList {
+		font-size: 1.5rem;
+		text-align: center;
+		.float-left {
+			float: left;
+		}
+		.project-title {
+			font-size: 1.6rem;
+			height: 4rem;
+			line-height: 4rem;
+			text-align: center;
+			background: #e2eef7;
+		}
+		.project {
+			height: 4rem;
+			line-height: 4rem;
+		}
+		.summary {
+			display: inline-block;
+			padding-left: 1rem;
+			width: 66.8%;
+			// height: 4.5rem;
+			overflow-x: auto;
+			white-space: nowrap;
+			text-align: left;
+		}
+		.name {
+			font-size: 1.7rem;
+			color: #666;
+			vertical-align: middle;
+		}
+		.issue-status {
+			display: inline-block;
+			padding-left: 1rem;
+			width: 7.15rem;
+			text-align: center;
+			white-space: nowrap;
+			overflow-x: auto;
+		}
+		.operation {
+			display: inline-block;
+			padding: 0 .5rem;
+			width: 5.3rem;
+		}
+	}
+}

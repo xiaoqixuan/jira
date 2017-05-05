@@ -10,10 +10,10 @@ layerArr.length = projectDir.split('/').length + 1;
 module.exports = {
 	build: {
 		env: require('./prod.env'),
-		index: path.resolve(process.cwd(), 'dist/static/index.html'),
-		assetsRoot: path.resolve(process.cwd(), 'dist/static'),
+		index: path.resolve(process.cwd(), '../webapp/static/index.html'),
+		assetsRoot: path.resolve(process.cwd(), '../webapp/static'),
 		assetsSubDirectory: './',
-		assetsPublicPath: projectPackage.cdnUrl || '',
+		assetsPublicPath: projectPackage.cdnUrl || './static/', // 配置资源路径
 		productionSourceMap: false,
 		// Gzip off by default as many popular static hosts such as
 		// Surge or Netlify already gzip all static assets for you.

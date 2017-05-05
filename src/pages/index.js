@@ -4,6 +4,9 @@ import attention from './attention';
 import important from './important';
 import kpi from './kpi';
 import search from './search';
+import detail from './detail';
+import company from './company';
+import team from './team';
 
 export default {
     page404,
@@ -12,4 +15,7 @@ export default {
     important,
     kpi,
     search,
+    detail,
+    company,
+    team,
 }

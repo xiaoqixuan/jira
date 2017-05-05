@@ -10,8 +10,9 @@
                         <p class="main-title">
                             <img class="project-icon" src="../public/img/icon_project.png">
                             <span class="name">当月数据概况</span>
+                            <span class="float-right note-time">截止至 {{time}} 数据</span>
                         </p>
-                        <p class="notes">截止至 {{time}} 数据</p>
+                        <!-- <p class="notes">截止至 {{time}} 数据</p> -->
                     </div>
                     <!-- 加载中 -->
                     <div v-if="!configList.length" class="loading">
@@ -122,7 +123,7 @@
 
                 <div class="blank"></div>               
 
-                <div class="wrapper history">
+                <div class="wrapper history-data">
                     <div class="title-wrap">
                         <p class="main-title">
                             <img class="project-icon" src="../public/img/icon_project.png">

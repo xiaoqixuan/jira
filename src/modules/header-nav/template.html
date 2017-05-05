@@ -8,8 +8,12 @@
             </p>
         </div>
         <span class="name middle-vertical">{{title}}</span>
-        <div class="right">
-        	<!-- <span>团队</span> -->
+        <div v-if="teamList.length" class="right" @click="isOpen = !isOpen;">
+            <p class="text">研发团队<i class="mep-icon mep-icon-arrow-down-b"></i></p>
+            <ul v-if="isOpen" class="selection">
+                <li class="item" v-for="(n,index) in teamList"><a :href="'#/team/'+ n.moduleKey">{{n.moduleName}}</a></li>
+            </ul>
         </div>
+        <div class="shadow" v-if="isOpen" @click="isOpen = false;"></div>
     </div>
 </div>

@@ -25,7 +25,78 @@ var textStyle = {
     color:"#999"
 };
 var lineColor = ["#f6cf57","#e75b58","#5a649d","#b7d0f9","#6091e5","#a154af","#86c3bd"];
+// 假数据
+var configList = [
+	{name: "研发团队人员", value: "119"},
+	{name: "非研发团队人员", value: "34"},
+	{name: "总人数", value: "153"},
+	{name: "待完成需求", value: 170},
+	{name: "完成子需求", value: 15},
+	{name: "完成开发任务", value: 110},
+	{name: "完成测试任务", value: 19},
+	{name: "完成专项/项目", value: 5}
+];
+var compareData = {
+	in_two: {
+		development_num: 110,
+		resolvedDev_num: 835,
+		resolvedProject_num: 10,
+		resolved_num: 235,
+		sharing_center_num: 43,
+		test_num: 108,
+		total: 153,
+		unresolved_num:0
+	},
+	in_two_time: "2017年3月",
+	last: {
+		development_num: 117,
+		resolvedDev_num: 662,
+		resolvedProject_num: 18,
+		resolved_num: 132,
+		sharing_center_num: 34,
+		test_num: 103,
+		total: 151,
+		unresolved_num:129
+	},
+	last_time: "2017年4月",
+};
+var compareData2 = {
+	in_two: {
+		development_num: 110,
+		resolvedDev_num: 835,
+		resolvedProject_num: 10,
+		resolved_num: 235,
+		sharing_center_num: 43,
+		test_num: 108,
+		total: 153,
+		unresolved_num:0
+	},
+	in_two_time: "2016年4季度",
+	last: {
+		development_num: 117,
+		resolvedDev_num: 662,
+		resolvedProject_num: 18,
+		resolved_num: 132,
+		sharing_center_num: 34,
+		test_num: 103,
+		total: 151,
+		unresolved_num:129
+	},
+	last_time: "2017年1季度",
+};
 
+var historyData = {
+	data:{
+		development: {'2016年10月': 78, '2016年11月': 86, '2016年12月': 94, '2017年1月': 92, '2017年2月': 95, '2017年3月': 110, '2017年4月': 117},
+		resolved: {'2016年10月': 23, '2016年11月': 35, '2016年12月': 83, '2017年1月': 155, '2017年2月': 132, '2017年3月': 235, '2017年4月': 132},
+		resolvedDev: {'2016年10月': 263, '2016年11月': 341, '2016年12月': 324, '2017年1月': 343, '2017年2月': 505, '2017年3月': 835, '2017年4月': 662},
+		resolvedProject: {'2016年10月': 3, '2016年11月': 11, '2016年12月': 21, '2017年1月': 5, '2017年2月': 10, '2017年3月': 10, '2017年4月': 18},
+		sharing_center: {'2016年10月': 18, '2016年11月': 20, '2016年12月': 23, '2017年1月': 26, '2017年2月': 37, '2017年3月': 43, '2017年4月': 34},
+		test: {'2016年10月': 30, '2016年11月': 74, '2016年12月': 103, '2017年1月': 80, '2017年2月': 44, '2017年3月': 108, '2017年4月': 103},
+		unresolved: {'2016年10月': 0, '2016年11月': 0, '2016年12月': 0, '2017年1月': 0, '2017年2月': 0, '2017年3月': 0, '2017年4月': 129},
+	},
+	monthList: ["2016年10月", "2016年11月", "2016年12月", "2017年1月", "2017年2月", "2017年3月", "2017年4月"]
+};
 export default {
 	route: {
 		path: "/kpi",
@@ -304,63 +375,49 @@ export default {
 	},
 	beforeMount() {		
 		// 获取时间
-		this.getData('/team.do?time&type=day')
-			.then(_data => {
-				this.time = _data.currentTime;
-			}).catch(_err => {
-				alert(_err);
-			})
+		this.time = new Date().toLocaleDateString();
 		// 获取当月数据概况
-		this.getData('/wholeSituationController.do?getNow')
-			.then(_data => {
-				this.configList = _data;
-			}).catch(_err => {
-				alert(_err);
-			})
-		
+		this.configList = configList;
+
 		// 基于准备好的dom，初始化echarts实例
 		this.$nextTick(function() {
 			this.getTransverse();
 			this.getLongitudinal();
 			this.getHistoryLine();
 		})
+		
 	},
 	methods: {
 		getTransverse() {	
 	        this.transverse = echarts.init(document.getElementById("transverse-histogram")),
 	        this.transverse.setOption(this.transverseBar);
 	        // 获取同比
-			this.getData('/wholeSituationController.do?getYearOnYear&projectkey=CDDEV')
-				.then(_data => {
-					this.compareTime.time1 =  _data.last_time;
-					this.compareTime.time2 =  _data.in_two_time;
-					// 解析数据
-            		var dataObj = this.parseData(_data);
-            		// 渲染echarts数据
-            		this.renderHistogramImg(dataObj,this.transverse);
-            		// 获取表格数据
-            		this.makeTable(dataObj,true);
-				}).catch(_err => {
-					alert(_err);
-				})
+			var _data = compareData;
+
+			this.compareTime.time1 =  _data.last_time;
+			this.compareTime.time2 =  _data.in_two_time;
+			// 解析数据
+    		var dataObj = this.parseData(_data);
+    		// 渲染echarts数据
+    		this.renderHistogramImg(dataObj,this.transverse);
+    		// 获取表格数据
+    		this.makeTable(dataObj,true);
+				
 		},
 		getLongitudinal() {	
 	        this.longitudinal = echarts.init(document.getElementById("longitudinal-histogram")),
 	        this.longitudinal.setOption(this.transverseBar);
 	        // 获取同比
-			this.getData('/wholeSituationController.do?getlinkRelativeRatio&projectkey=CDDEV')
-				.then(_data => {
-					this.compareTime.time3 =  _data.last_time;
-					this.compareTime.time4 =  _data.in_two_time;
-					// 解析数据
-            		var dataObj = this.parseData(_data);
-            		// 渲染echarts数据
-            		this.renderHistogramImg(dataObj,this.longitudinal);
-            		// 获取表格数据
-            		this.makeTable(dataObj,false);
-				}).catch(_err => {
-					alert(_err);
-				})
+			var _data = compareData2;
+				
+			this.compareTime.time3 =  _data.last_time;
+			this.compareTime.time4 =  _data.in_two_time;
+			// 解析数据
+    		var dataObj = this.parseData(_data);
+    		// 渲染echarts数据
+    		this.renderHistogramImg(dataObj,this.longitudinal);
+    		// 获取表格数据
+    		this.makeTable(dataObj,false);
 		},
 		parseData(_data) {
 		    var last = _data.last;
@@ -480,42 +537,39 @@ export default {
 			this.history = echarts.init(document.getElementById("history-line")),
 	        this.history.setOption(this.historyLine);
 	        // 获取历史数据
-			this.getData('/wholeSituationController.do?getHistory&projectkey=CDDEV')
-				.then(_data => {
-					var xAxis = _data.monthList.map(function (el,index) {
-		                var obj = {
-		                    value: el,
-		                    textStyle: textStyle
-		                };
-		                return obj;
-		            });
-		            var arr = [                
-		                _data.data.sharing_center, // 非研发团队人员
-		                _data.data.development, // 研发人员
-		                _data.data.resolvedProject, // 完成专项/项目
-		                _data.data.test, // 测试
-		                _data.data.resolvedDev, // 完成开发任务
-		                _data.data.resolved, // 完成需求
-		                // _data.data.unresolved, // 待解决
-		            ];
+			var _data = historyData;
+				
+			var xAxis = _data.monthList.map(function (el,index) {
+                var obj = {
+                    value: el,
+                    textStyle: textStyle
+                };
+                return obj;
+            });
+            var arr = [                
+                _data.data.sharing_center, // 非研发团队人员
+                _data.data.development, // 研发人员
+                _data.data.resolvedProject, // 完成专项/项目
+                _data.data.test, // 测试
+                _data.data.resolvedDev, // 完成开发任务
+                _data.data.resolved, // 完成需求
+                // _data.data.unresolved, // 待解决
+            ];
 
-		            var seriesData = [];
-		            seriesData = arr.map(function (obj,index) {
-		                var array = [];
-		                for(var i in obj){
-		                    array.push(obj[i]);
-		                }
-		                return array;
-		            });
+            var seriesData = [];
+            seriesData = arr.map(function (obj,index) {
+                var array = [];
+                for(var i in obj){
+                    array.push(obj[i]);
+                }
+                return array;
+            });
 
-		            this.historyLine.series.forEach(function (obj,index) {
-		                obj.data = seriesData[index];
-		            });
-		            this.historyLine.xAxis.data = xAxis;
-		            this.history.setOption(this.historyLine)
-				}).catch(_err => {
-					alert(_err);
-				})
+            this.historyLine.series.forEach(function (obj,index) {
+                obj.data = seriesData[index];
+            });
+            this.historyLine.xAxis.data = xAxis;
+            this.history.setOption(this.historyLine)
 		}
 	}
 }

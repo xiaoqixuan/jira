@@ -41,7 +41,7 @@
                         <span class="name">历史搜索</span>
                         <i @click="deleteHistory();" class="mep-icon mep-icon-trash-a"></i>
                     </div>
-                    <p v-if="!history" class="no-data">没有历史记录</p>
+                    <p v-if="!history || !history.length" class="no-data">没有历史记录</p>
                     <ul v-if="history" class="list">
                         <li class="item" v-for="(n,index) in history" @click="toDetail(n);">{{n.title}}</li>
                     </ul>

@@ -1,0 +1,118 @@
+.container {
+	/*.mep-tabs {
+		.mep-tabs-nav {
+			font-size: 1.7rem;
+		}
+		.mep-tabs-tabpane {
+			font-size: 1.5rem;
+		}
+	}*/
+	
+	.title {
+	    height: 4rem;
+	    line-height: 4rem;
+	    padding: 0 1rem;
+	    font-size: 1.6rem;
+	    color: #666;
+	    font-weight: bold;
+	    border-top: 1px solid #e6e6e6;
+	    border-bottom: 1px solid #e6e6e6;
+	    .number {
+		    margin-left: .5rem;
+		    font-size: 2.2rem;
+		    color: #028be6;
+		}
+	}
+    .float-right {
+	    float: right;
+	}
+	.note-time {
+	    font-size: 1.2rem;
+	    color: #888;
+	}
+	.notes {
+	    padding-left: 1.5rem;
+	    font-size: 1.2rem;
+	    color: #888;
+	    line-height: 3rem;
+	}
+	.efficiency {
+		padding-bottom: 1rem;
+		.table-list {
+		    width: 100%;
+		    font-size: 1.5rem;
+		    line-height: 30px;
+		    text-align: center;
+		    border-spacing: 0;
+		    border-collapse: collapse;		    
+		    th,
+		    td {
+		        padding: .5rem 0;
+		        font-weight: normal;
+		        height: 4rem;
+		        .team-name {
+		        	display: inline-block;
+				    margin: 0 auto;
+				    width: 7.6rem;
+				    height: 3.3rem;
+				    line-height: 3.3rem;
+				    text-align: center;
+				    background-color: #028be6;
+				    color: #fff;
+				    border-radius: .4rem;
+				    overflow: hidden;
+				    text-overflow: ellipsis;
+				    white-space: nowrap;
+				}
+				.team-value {
+					font-size: 1.3rem;
+				}
+				&:last-child {
+					.team-value {
+						padding-right: .8rem;
+					} 					
+				}
+		    }
+		    th {
+		        background: #F6F6FB 100%;
+		    }
+		}
+	}
+
+	.data-list {
+		padding-bottom: 2rem;		
+		.item {
+		    display: inline-block;
+		    padding: 0 2rem 0 0;
+		    width: 50%;
+		    &:nth-child(2n+1) {
+				padding-left: 3.2rem;
+			}
+			.color-block {
+				display: inline-block;
+				vertical-align: middle;
+				margin-right: 0.7rem;
+				width: 1.7rem;
+				height: 1.7rem;
+				border-radius: .3rem;
+			}
+			.item-name {
+				display: inline-block;
+				width: 50%;
+				color: #999;
+				font-size: 1.5rem;
+				vertical-align: middle;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			.value {
+				color: #999;
+				font-size: 1.5rem;
+				float: right;
+				margin-right: 1.2rem;
+				vertical-align: middle;
+			}
+		}
+	}
+}

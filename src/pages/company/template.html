@@ -1,0 +1,134 @@
+<div class="page-container">
+    <header-nav :title="'公司概况'" :projectkey="projectkey"></header-nav>
+
+    <div class="page-wrap">
+        <div class="page-box">
+            <div class="container">
+                <!-- <Tabs value="name1">
+                    <Tab-pane label="标签一" name="name1">标签一的内容</Tab-pane>
+                    <Tab-pane label="标签二" name="name2">标签二的内容</Tab-pane>
+                    <Tab-pane label="标签三" name="name3">标签三的内容</Tab-pane>
+                </Tabs> -->
+                <div class="title-wrap">
+                    <p class="main-title">
+                        <img class="project-icon" src="../public/img/icon_project.png">
+                        <span class="name">{{companyName}}</span>
+                    </p>
+                </div>
+
+                <div class="people-number">
+                    <p class="title">团队人员情况
+                        <span v-if="peopleConfig" class="float-right">{{peopleConfig.name}}
+                            <span class="number">{{peopleConfig.ptotal}}</span>
+                        </span>
+                    </p>                    
+                    <!-- 加载中 -->
+                    <div v-if="loading1" class="loading">
+                        <img src="../public/img/loading.gif">
+                    </div>  
+                    <ul v-if="!loading1 && peopleList" class="people-config">
+                        <li class="item" v-for="(n,index) in peopleList">
+                            <p class="number">{{n.ptotal}}</p><p class="name">{{n.name}}</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="basic">
+                    <p class="title">本周公司概况<span class="float-right note-time">{{time.startTime}} 至 {{time.endTime}} 数据</span></p>
+                    <!-- 加载中 -->
+                    <div v-if="loading2" class="loading">
+                        <img src="../public/img/loading.gif">
+                    </div>  
+                    <ul v-if="!loading2 && basicList" class="people-config">
+                        <li class="item" v-for="(n,index) in basicList">
+                            <p class="number">{{n.num}}</p><p class="name">{{n.name}}</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="efficiency">
+                    <p class="title">需求处理效率</p>
+                    <p class="notes">已解决需求周期/已解决需求数量=平均需求处理效率</p>
+                    <table v-if="efficiencyThead" class="table-list">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th v-for="(n,index) in efficiencyThead">{{n}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(n,index) in efficiencyTbody">
+                                <td><span class="team-name">{{n.name}}</span></td>
+                                <td v-for="(k,index) in n.value"><span class="team-value">{{k}}</span></td>
+                            </tr>
+                        </tbody>
+                    </table>                        
+                </div>
+                <div class="blank"></div>
+
+                <div class="title-wrap">
+                    <p class="main-title">
+                        <img class="project-icon" src="../public/img/icon_project.png">
+                        <span class="name">重要指标展示</span>
+                        <span class="float-right note-time">截止至 {{time.deadline}} 数据</span>
+                    </p>
+                </div> 
+                <!-- 产品开发需求测试压力 -->
+                <div class="pressure">
+                    <p class="title">产品开发需求测试压力</p>
+                    <p class="notes">
+                        产品需求压力：PRD编写中的需求<br>
+                        开发需求压力：开发中需求数量<br>
+                        测试需求压力：测试中（300,500）需求数量                        
+                    </p>
+
+                    <div class="echarts"  id="pressure-histogram"></div>
+                </div>
+                <!-- 待解决需求占比 -->
+                <div class="team-percentage">
+                    <p class="title">待解决需求占比分析
+                        <span class="float-right">总个数
+                            <span class="number">{{percentageData.total}}</span>
+                        </span>
+                    </p>
+
+                    <div class="echarts" id="percentagePie"></div>
+                    <ul class="data-list">
+                        <li class="item" v-for="(n,index) in percentageData.list">
+                            <span class="color-block" :style="{background: n.color}"></span>
+                            <span class="item-name">{{n.name}}</span>
+                            <span class="value">{{n.value}}</span>
+                        </li>
+                    </ul>
+                </div>
+                <!--未解决需求状态-->
+                <div class="team-status">
+                    <p class="title">待解决需求状态分析
+                        <span class="float-right">总个数
+                            <span class="number">{{statusData.total}}</span>
+                        </span>
+                    </p>
+
+                    <div class="echarts" id="statusPie"></div>
+                    <ul class="data-list">
+                        <li class="item" v-for="(n,index) in statusData.list">
+                            <span class="color-block" :style="{background: n.color}"></span>
+                            <span class="item-name">{{n.name}}</span>
+                            <span class="value">{{n.value}}</span>
+                        </li>
+                    </ul>
+                </div>
+                <!--周PRD-->
+                <div class="week-prd">
+                    <p class="title">周PRD完成趋势</p>
+                    <div class="echarts" id="prdLine"></div>
+                </div>
+                <!--周完成及新增-->
+                <div class="week-and-add">
+                    <p class="title">周完成以及新增需求</p>
+                    <div class="echarts" id="weekLine"></div>
+                </div>              
+            </div>
+        </div>
+    </div>
+</div>

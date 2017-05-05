@@ -16,7 +16,7 @@
                             <img class="icon" src="../public/img/icon_menu_company.png"><span class="text align-vertical">公司概况<i class="mep-icon mep-icon-arrow-down-b"></i></span>
                         </p>
                         <ul class="selection" v-if="isOpen1">
-                            <li>成都研发中心</li>
+                            <li><router-link to="/company/CDDEV">成都研发中心</router-link></li>
                         </ul>
                     </li>                    
                     <li class="nav-link" @click="isOpen2 = !isOpen2;">
@@ -24,7 +24,10 @@
                             <img class="icon" src="../public/img/icon_menu_team.png"><span class="text align-vertical">研发团队概况<i class="mep-icon mep-icon-arrow-down-b"></i></span>
                         </p>
                         <ul class="selection" v-if="isOpen2">   
-                            <li v-for="(n,index) in teamList"><router-link to="###">{{n.moduleName}}</router-link></li>
+                            <li v-for="(n,index) in teamList">
+                                <a :href="'#/team/'+ n.moduleKey">{{n.moduleName}}</a>
+                                <!-- <router-link to="###">{{n.moduleName}}</router-link> -->
+                            </li>
                         </ul>
                     </li>
                     <li class="nav-link">
@@ -53,47 +56,47 @@
                     </p>
                     <p class="notes">2周内预发布项目</p>
                 </div>
-                <ul class="project-items">
-                    <li class="project-detail">
+                <ul v-if="!loading && projectList" class="project-items">
+                    <li class="project-detail" v-for="(n,index) in projectList">
                         <ul class="content">
                             <li class="item-header">
                                 <img class="icon" src="../public/img/icon_menu_importance.png">
-                                <router-link to="##" class="project-title">国美会员管理平台</router-link>
+                                <a :href="'#/detail/'+ n.issuekey" class="project-title">{{n.issuetitle}}</a>
                             </li>
                             <li class="issue-time">
                                 <span class="name">项目编号</span>
-                                <span class="value special">CDDEV-4648</span>
+                                <span class="value special">{{n.issuekey}}</span>
                             </li>
                             <li class="issue-time">
                                 <span class="name">计划发布时间</span>
                                 <i class="mep-icon mep-icon-clock"></i>
-                                <span class="value special">2017-04-27</span>
+                                <span class="value special">{{n.publishtime}}</span>
                             </li>
                             <li class="issue-time">
                                 <span class="name">当前执行流程</span>
-                                <span class="value special">300测试</span>
+                                <span class="value special">{{n.status}}</span>
                             </li>
                             <li class="issue-time">
                                 <span class="name">项目进度指示</span>
                                 <i class="mep-icon mep-icon-record color"></i>
-                                <span class="special">正常</span>
+                                <span class="special">{{n.projectstatus}}</span>
                             </li>
                             <li class="issue-time progress">
                                 <span class="name">项目进度</span>
                                 <div class="progress-bar">
-                                    <p class="progressed" style="width:83%"></p>
-                                    <span class="percentage">83%</span>
+                                    <p class="progressed" :style="{width:n.soncount+'%'}"></p>
+                                    <span class="percentage">{{n.soncount}}%</span>
                                 </div>
                             </li>
                         </ul>
                     </li>
                 </ul>
                 <!-- 加载中 -->
-                <div class="loading">
+                <div v-if="loading" class="loading">
                     <img src="../public/img/loading.gif">
                 </div>                 
 
-                <p class="no-result">暂无项目...</p>                
+                <p v-if="!loading && !projectList.length" class="no-result">暂无项目...</p>                
             </div>
         </div>
     </div>

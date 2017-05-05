@@ -1,0 +1,67 @@
+<div class="page-container">
+    <header-nav :title="'研发团队概况'"></header-nav>
+
+    <div class="page-wrap">
+        <div class="page-box">
+            <div class="container">
+
+                <div class="title-wrap">
+                    <p class="main-title">
+                        <img class="project-icon" src="../public/img/icon_project.png">
+                        <span class="name">本周{{info.moduleName}}研发团队</span>
+                        <span class="float-right note-time">{{time.startTime}} 至 {{time.endTime}} 数据</span>
+                    </p>
+                </div>
+                <!-- 加载中 -->
+                <div v-if="loading" class="loading">
+                    <img src="../public/img/loading.gif">
+                </div>  
+
+                <div v-if="!loading && info" class="cycle-img">
+                    <div class="text">
+                        {{info.count}} <span class="sub">人</span>
+                    </div>
+                    <div class="inner2">
+                        <div class="inner3"></div>
+                    </div>
+                </div>
+                <!-- 开发人员配置 -->
+                <ul v-if="!loading && info" class="people-config team-people">
+                    <li class="item" v-for="(n,index) in info.peopleConfig">
+                        <p class="top">
+                            <span class="number">{{n.value}}</span>人
+                        </p>
+                        <p class="name">{{n.name}}</p>
+                    </li>
+                </ul>
+                <!-- 任务概况 -->
+                <ul v-if="!loading && info" class="task">
+                    <li class="item" v-for="(n,index) in info.taskConfig">
+                        {{n.name}}
+                        <span class="float-right">{{n.value}}<span class="unit"> 个</span></span>
+                    </li>
+                </ul>
+                <div class="blank"></div>
+                <!-- 任务列表 -->
+                <ul class="projectList">
+                    <li class="project-title"><span class="summary float-left">项目名称</span><span class="issue-status float-left">状态</span><span class="operation float-left">操作</span></li>
+                    <li v-for="(n,index) in projectList" class="project">
+                        <div class="summary float-left">    
+                            
+                            <a :href="'#/detail/'+ n.issuekey">
+                                <img v-if="n.isimportant" class="icon" src="../public/img/icon_menu_importance.png"><span class="name">{{n.issuetitle}}</span>
+                            </a>
+                        </div>
+                        <span class="issue-status float-left">{{n.status}}</span>
+                        <p class="operation float-left" @click="doAttention(n);">
+                            <img v-if="!n.isconcern" class="icon" src="../public/img/icon_attention.png">
+                            <img v-if="n.isconcern" class="icon" src="../public/img/icon_menu_attention.png">
+                        </p>
+                    </li>
+                </ul>               
+
+                <!-- <p v-if="!loading && !projectList" class="no-result">暂无研发团队</p>                 -->
+            </div>
+        </div>
+    </div>
+</div>

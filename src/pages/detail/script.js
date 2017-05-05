@@ -14,12 +14,12 @@ export default {
 		}
 	},
 	beforeMount() {
-		this.getData(`/team.do?detail&issuekey=${this.issuekey}`)
+		/*this.getData(`/team.do?detail&issuekey=${this.issuekey}`)
 			.then(_data => {
 				this.info = _data;
 			}).catch(_err => {
 				alert(_err);
-			})
+			})*/
 	},
 	computed: {
 		issuekey() {

@@ -1,10 +1,91 @@
 .container {
-	.mep-tabs {
-		.mep-tabs-nav {
-			font-size: 1.7rem;
+	.text-center {
+		text-align: center;
+	}	
+	.project-item-title {
+		padding: 1rem;
+		font-size: 1.6rem;
+    	border-bottom: 1px solid #e9e9e9;	
+    	.issuetitle {
+		    display: inline-block;
+		    width: 90%;	    		
+		    white-space: nowrap;
+		    overflow-x: auto;
+    	}
+	}
+	.detail-wrap {
+		padding: 1.5rem 0;
+		font-size: 0;
+    	border-bottom: 1px solid #e9e9e9;
+		.detail-item {
+			display: inline-block;
+			width: 20%;			
+			font-size: 1.3rem;
+    		vertical-align: middle;
+			&:nth-child(2) {
+				width: 60%;
+			}		
+			&.progress-percentage {
+				font-size: 2rem;
+				color: red;
+			}	
+			.project-detail {
+				padding: 0 0 0 1.5rem;
+				border-left: 1px solid #e9e9e9;
+				border-top: none;
+				.name {
+					width: 10rem;
+				}
+			}
+			.detail-status {
+				font-size: 1.8rem;
+			}
 		}
-		.mep-tabs-tabpane {
-			font-size: 1.5rem;
+	}
+	.basic-title {
+		padding: .5rem 1rem;
+		font-size: 1.5rem;
+	}
+	.detail-people {
+		.number {
+		    font-size: 2.6rem;
+		    margin-right: .5rem;
+		    font-weight: normal !important;
 		}
+	}
+
+	.manager {
+		width: 80%;
+		padding: .5rem 1rem;
+		background-color: #e2eef7;
+		border-radius: .4rem;
+		margin: 1.5rem auto;
+		color: #666;
+		.item {
+			line-height: 2.6rem;
+			font-size: 1.6rem;
+			.name {
+				display: inline-block;
+				width: 10rem;
+			}
+			.special {
+				margin: 0 .5rem;
+			}
+		}
+	}
+	.total {
+	    width: 55%;
+	    // padding: 0;
+	    // background: none;
+	    .value {
+	    	display: inline-block;
+	    	width: 4rem;
+	    	text-align: right;
+	    	color: #028be6;
+	    }
+	}
+	.detail-echarts {
+		width: 100%;
+		height: 20rem;
 	}
 }

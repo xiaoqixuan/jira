@@ -4,19 +4,93 @@
     <div class="page-wrap">
         <div class="page-box">
             <div class="container">
-                <!-- <Tabs value="name1">
-                    <Tab-pane label="标签一" name="name1">标签一的内容</Tab-pane>
-                    <Tab-pane label="标签二" name="name2">标签二的内容</Tab-pane>
-                    <Tab-pane label="标签三" name="name3">标签三的内容</Tab-pane>
-                </Tabs> -->
+                <div v-if="!loading" class="content">                    
+                    <div class="project-item-title">
+                        <span class="issuetitle">{{info.issuetitle}}</span>
+                        <img @click="doAttention(info);" v-if="!info.isconcern" class="icon float-right" src="../public/img/icon_attention.png">
+                        <img @click="doAttention(info);" v-if="info.isconcern" class="icon float-right" src="../public/img/icon_menu_attention.png">
+                    </div>
+                    <ul class="detail-wrap">
+                        <li class="detail-item text-center">
+                            <span class="detail-status">{{info.status}}</span><br>
+                            <span><i class="mep-icon mep-icon-record" :class="{'red':info.projectstatus=='高危','green':info.projectstatus=='正常','yellow':info.projectstatus=='预警'}"></i>{{info.projectstatus}}</span>
+                        </li>
+                        <li class="detail-item">                            
+                            <ul class="project-detail">
+                                <li class="issue-time">
+                                    <span class="name">项目编号</span>
+                                    <span class="value special">{{info.issuekey}}</span>
+                                </li>
+                                <li class="issue-time">
+                                    <span class="name">项目归属团队</span>
+                                    <span class="value special">{{info.team}}</span>
+                                </li>
+                                <li class="issue-time">
+                                    <span class="name">计划发布时间</span>
+                                    <i class="mep-icon mep-icon-clock"></i>
+                                    <span class="value special">{{info.publishtime}}</span>
+                                </li>
+                            </ul>
+                        </li>                        
+                        <li class="detail-item text-center large progress-percentage">{{info.aggregateprogress}}</li>
+                    </ul>
 
+                    <div class="title-wrap">
+                        <p class="main-title">
+                            <img class="project-icon" src="../public/img/icon_project.png">
+                            <span class="name">项目概况</span>
+                        </p>
+                    </div>
+                    <div class="cycle-img">
+                        <div class="text">
+                            {{info.teamperson}} <span class="sub">人</span>
+                        </div>
+                        <div class="inner2">
+                            <div class="inner3"></div>
+                        </div>
+                    </div>
+
+                    <ul class="people-config detail-people">
+                        <li class="item" v-for="(n,index) in info.peopleConfig">
+                            <p class="top">
+                                <span class="number">{{n.value}}</span>人
+                            </p>
+                            <p class="name">{{n.name}}</p>
+                        </li>
+                    </ul>
+
+                    <ul class="manager">
+                        <li class="item">
+                            <span class="name">项目负责人</span><span class="special">{{info.leader}}</span>                        
+                        </li>
+                        <li class="item">
+                            <span class="name">预估工作量</span><span class="special">{{info.estimate}}</span>天                      
+                        </li>
+                    </ul>
+
+                    <div v-if="info.soncount != 0" class="title-wrap line">
+                        <p class="main-title">
+                            <img class="project-icon" src="../public/img/icon_project.png">
+                            <span class="name">开发任务进度</span>
+                        </p>
+                        <!-- <p class="notes">2周内预发布项目</p> -->
+                    </div>
+
+                    <div v-if="info.soncount != 0" id="histogram" class="detail-echarts"></div>
+
+                    <ul v-if="info.soncount != 0" class="total manager">
+                        <li class="item" v-for="(n,index) in info.taskConfig">
+                            <span class="name">{{n.name}}共</span>
+                            <span class="value special">{{n.value}}</span>个
+                        </li>
+                    </ul>
+
+                </div>
 
                 <!-- 加载中 -->
-                <div class="loading">
+                <div v-if="loading" class="loading">
                     <img src="../public/img/loading.gif">
-                </div>                 
-
-                <p class="no-result">{{issuekey}}项目详情...</p>                
+                </div>                  
             </div>
         </div>
     </div>

@@ -1,6 +1,5 @@
 import 'whatwg-fetch';
 
-// const Host = 'http://10.112.68.14:8080/jiraexpand';
  const Host = '/jiraexpand';
 
 function jsonToQueryString(json) {

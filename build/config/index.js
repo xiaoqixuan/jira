@@ -10,10 +10,10 @@ layerArr.length = projectDir.split('/').length + 1;
 module.exports = {
 	build: {
 		env: require('./prod.env'),
-		index: path.resolve(process.cwd(), '../webapp/static/index.html'),
-		assetsRoot: path.resolve(process.cwd(), '../webapp/static'),
+		index: path.resolve(process.cwd(), 'dist/index.html'),
+		assetsRoot: path.resolve(process.cwd(), 'dist/'),
 		assetsSubDirectory: './',
-		assetsPublicPath: projectPackage.cdnUrl || './static/', // 配置资源路径
+		assetsPublicPath: projectPackage.cdnUrl || '', // 配置资源路径
 		productionSourceMap: false,
 		// Gzip off by default as many popular static hosts such as
 		// Surge or Netlify already gzip all static assets for you.
@@ -27,8 +27,8 @@ module.exports = {
 		port: projectPackage.devPort || 8081,
 		assetsSubDirectory: './',
 		assetsPublicPath: '',
-		// proxyTable: {},
-		proxyTable: {
+		proxyTable: {},
+		/*proxyTable: {
 		  '/jiraexpand': {
 		    target: 'http://localhost:8080',
 		    changeOrigin: true,
@@ -36,7 +36,7 @@ module.exports = {
 		      '^/jiraexpand': '/jiraexpand'
 		    }
 		  }
-		},
+		},*/
 		// CSS Sourcemaps off by default because relative paths are "buggy"
 		// with this option, according to the CSS-Loader README
 		// (https://github.com/webpack/css-loader#sourcemaps)
